@@ -1,21 +1,20 @@
-package com.veda.emaxil.restrict;
+package com.veda.emaxil.core.entity;
 
 import lombok.Data;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * 速率限制器规则
+ * 邮件发送限制
  * @author derick.jin
  */
 @Data
-public class RestrictRule {
+public class EmailSendRestrict {
     public enum LimitTypeEnum {
         /**
          * 总数限制
          */
         COUNT_LIMIT,
-        //
         /**
          * 速率限制
          */

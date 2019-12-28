@@ -1,14 +1,14 @@
-package com.veda.emaxil.sender;
+package com.veda.emaxil.core.sender;
 
-import com.veda.emaxil.persistence.AccountInterface;
-import com.veda.emaxil.persistence.EmailInterface;
+import com.veda.emaxil.core.entity.AbstractAccount;
+import com.veda.emaxil.core.entity.AbstractEmail;
 
 /**
  * 邮件发送接口
  * @param <A> 发送账户
  * @param <E> 发送邮件
  */
-public interface EmailSenderInterface<A extends AccountInterface, E extends EmailInterface> {
+public interface AbstractEmailSender<A extends AbstractAccount, E extends AbstractEmail> {
 
     /**
      * 只需要实现使用 该账户 发送 该邮件

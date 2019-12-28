@@ -1,10 +1,13 @@
-package com.veda.emaxil.context;
+package com.veda.emaxil.core.entity;
 
-import com.veda.emaxil.persistence.EmailInterface;
 import lombok.Data;
 
+/**
+ * 邮件发送任务
+ * @param <E>
+ */
 @Data
-public class SendEmailTask<E extends EmailInterface> {
+public class EmailSendTask<E extends AbstractEmail> {
 
     /**
      * 邮件发送状态
@@ -52,4 +55,8 @@ public class SendEmailTask<E extends EmailInterface> {
      * 邮件发送失败的最大重试次数
      */
     private volatile int retryLimit = 0;
+    /**
+     * 发送失败时的异常信息
+     */
+    private String errorMessage;
 }

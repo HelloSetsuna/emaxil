@@ -1,12 +1,12 @@
-package com.veda.emaxil.producer;
+package com.veda.emaxil.core.producer;
 
-import com.veda.emaxil.persistence.EmailInterface;
+import com.veda.emaxil.core.entity.AbstractEmail;
 
 /**
  * 生产者接口
  * @param <E> 邮件
  */
-public interface ProducerInterface <E extends EmailInterface> {
+public interface ProducerInterface <E extends AbstractEmail> {
 
     /**
      * 生产邮件发送任务
