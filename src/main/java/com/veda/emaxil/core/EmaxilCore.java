@@ -11,7 +11,6 @@ import com.veda.emaxil.core.service.EmailSendTaskService;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.annotation.PostConstruct;
@@ -179,7 +178,7 @@ public class EmaxilCore<A extends AbstractAccount, E extends AbstractEmail> {
         }
         // 立即检验所有账户的启用状态
         restrictService.updateEmailSendAccountEnable(emailSendAccounts, false);
-        // 获取最短的统计时间间隔 * 2
+        // 计算最长的统计时间间隔 * 2 作为 删除历史统计数据的间隔
         deleteEmailSendAccountStatisticMillisInterval = emailSendAccounts.stream()
                 .map(emailSendAccount -> emailSendAccount.getRestricts().stream()
                         .map(restrict -> restrict.getTimeUnit().toMillis(restrict.getTimeValue()))

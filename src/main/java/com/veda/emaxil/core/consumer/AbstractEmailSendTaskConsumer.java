@@ -57,7 +57,7 @@ public abstract class AbstractEmailSendTaskConsumer<A extends AbstractAccount, E
                 emailSendTask.setStatus(SEND_SUCCESS);
                 emailSendTaskService.update(emailSendTask);
                 log.info("email:{} send success", emailSendTask.getId());
-                break;
+                return;
             } catch (Exception e) {
                 if (i == 0) {
                     log.error(StrUtil.format("email:{} send failure", emailSendTask.getId()), e);
@@ -70,7 +70,6 @@ public abstract class AbstractEmailSendTaskConsumer<A extends AbstractAccount, E
                 emailSendTaskService.update(emailSendTask);
             }
         }
-
     }
 
     /**

@@ -2,6 +2,7 @@ package com.veda.emaxil;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 适用于中小型企业的邮件发送服务实现, 在邮件服务商的接口速率限制下最大速率的发送邮件, 支持多活
@@ -31,6 +32,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * restrict 包下是对 邮件发送速率限制 和 发送总量限制 的限制器 的多种实现
  * sender 包下是对不同的邮件服务商如 网易、阿里 的企业邮箱等 发送邮件的发送者 的多种实现
  */
+@EnableScheduling
 @SpringBootApplication
 public class EmaxilApplication {
 

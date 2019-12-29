@@ -1,1 +1,11 @@
+spring:
+  application:
+    name: emaxil
+  redis:
+    port: 6379
+    host: localhost
+    database: 0
+    ssl: false
+server:
+  port: 8080
 
