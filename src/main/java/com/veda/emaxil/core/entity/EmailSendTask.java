@@ -38,7 +38,7 @@ public class EmailSendTask<E extends AbstractEmail> {
     /**
      * 邮件的具体数据封装
      */
-    private final transient E email;
+    private transient E email;
     /**
      * 邮件发送任务优先级
      */

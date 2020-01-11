@@ -163,9 +163,9 @@ public class EmaxilCore<A extends AbstractAccount, E extends AbstractEmail> {
 
     private void initEmailSendThreadPool(){
         emailSendThreadPool = new ThreadPoolTaskExecutor();
-        emailSendThreadPool.setCorePoolSize(getEmailSendConfig().getThreadPoolCoreSize());
-        emailSendThreadPool.setMaxPoolSize(getEmailSendConfig().getThreadPoolMaxSize());
-        emailSendThreadPool.setQueueCapacity(getEmailSendConfig().getThreadPoolQueueCapacity());
+        emailSendThreadPool.setCorePoolSize(getEmailSendConfig().getThreadPoolSize());
+        emailSendThreadPool.setMaxPoolSize(getEmailSendConfig().getThreadPoolSize());
+        emailSendThreadPool.setQueueCapacity(getEmailSendConfig().getThreadPoolSize());
         emailSendThreadPool.setThreadNamePrefix("emaxil-");
         emailSendThreadPool.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         emailSendThreadPool.initialize();

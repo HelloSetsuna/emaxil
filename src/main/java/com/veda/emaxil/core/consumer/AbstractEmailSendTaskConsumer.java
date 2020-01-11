@@ -8,8 +8,11 @@ import com.veda.emaxil.core.entity.EmailSendTask;
 import com.veda.emaxil.core.entity.AbstractEmail;
 import com.veda.emaxil.core.sender.AbstractEmailSender;
 import com.veda.emaxil.core.service.EmailSendTaskService;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
 
 import static com.veda.emaxil.core.entity.EmailSendTask.StatusEnum.*;
 
@@ -24,6 +27,7 @@ public abstract class AbstractEmailSendTaskConsumer<A extends AbstractAccount, E
     @Autowired
     private EmailSendTaskService<E> emailSendTaskService;
 
+    @Getter
     @Autowired
     private EmaxilCore<A, E> emaxilCore;
 
