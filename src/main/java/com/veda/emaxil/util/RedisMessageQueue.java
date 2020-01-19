@@ -27,6 +27,15 @@ public class RedisMessageQueue {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    /**
+     * 这里加锁主要是 应对 处于超时临界点的即将超时数据的ACK清理 可能存在的并发问题
+     * 可能会发生 一个消费者在数据即将超时时刚好获取该数据 在进行处理, 还未进行ACK,
+     * 与此同时, 另一个异步清理超时未ACK的线程发现它超时了, 将其重新放回原队列, 这就可能导致重复消费的问题
+     * 这里使用读写锁只适用于单节点的项目, 如果是分布式的情况则应该改为 分布式读写锁
+     * 分布式读写锁我还没有基于Redis实现过, 有机会我再优化此处吧, 一般来说可以将超时时间
+     * 设置的比较长来规避这个问题, 或者对消息的处理进行防止重复处理的验证, 我这里因为是邮件发送
+     * 在发送前会更新邮件发送任务的状态, 因此此锁对业务的影响不大, 我也是出于多想才加上的
+     */
     private ReentrantReadWriteLock ackQueueReadWriteLock = new ReentrantReadWriteLock(true);
 
     @Data
@@ -114,7 +123,7 @@ public class RedisMessageQueue {
 
     /**
      * 对超时未进行 ACK 的消息进行清理, 将他们放回原消息队列中
-     * 该方法应被定期执行 确保 timeoutMills 足够的长 不会影响正常的 ACK 确认
+     * 该方法应被一个定时任务线程定期执行 确保 timeoutMills 足够的长 不会影响正常的 ACK 确认
      * @param queueName 原队列名称
      * @param timeoutMills 超时时间 毫秒
      */
